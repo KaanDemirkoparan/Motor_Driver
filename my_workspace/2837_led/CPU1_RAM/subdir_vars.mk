@@ -9,7 +9,7 @@ CMD_SRCS += \
 ../2837xD_RAM_lnk_cpu1.cmd 
 
 LIB_SRCS += \
-C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/ccs/Debug/driverlib.lib 
+C:/ti/c2000/C2000Ware_5_02_00_00/driverlib/f2837xd/driverlib/ccs/Debug/driverlib.lib 
 
 C_SRCS += \
 ../led_ex1_blinky.c 

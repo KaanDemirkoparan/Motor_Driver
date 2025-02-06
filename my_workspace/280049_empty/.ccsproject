@@ -11,4 +11,5 @@
 	<filesToOpen value=""/>
 	<activeTargetConfiguration value="targetConfigs/TMS320F280049C_LaunchPad.ccxml"/>
 	<isTargetConfigurationManual value="true"/>
+	<isTargetManual value="true"/>
 </projectOptions>
