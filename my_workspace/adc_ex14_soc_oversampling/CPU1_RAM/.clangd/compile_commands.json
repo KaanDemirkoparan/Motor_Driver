@@ -1,0 +1,17 @@
+[
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling\" -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/libraries/calibration/hrpwm/F2837xD/include/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/adc_ex14_soc_oversampling.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling\" -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/libraries/calibration/hrpwm/F2837xD/include/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/device/F2837xD_CodeStartBranch.asm"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling\" -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/libraries/calibration/hrpwm/F2837xD/include/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/adc_ex14_soc_oversampling/device/device.c"
+   }
+]

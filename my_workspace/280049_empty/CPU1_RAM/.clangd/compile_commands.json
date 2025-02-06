@@ -1,0 +1,17 @@
+[
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f28004x/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/device/device.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f28004x/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/device/f28004x_codestartbranch.asm"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f28004x/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -I\"C:/Users/kaan.demirkoparan/my_workspace/280049_empty/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/280049_empty/empty_driverlib_main.c"
+   }
+]

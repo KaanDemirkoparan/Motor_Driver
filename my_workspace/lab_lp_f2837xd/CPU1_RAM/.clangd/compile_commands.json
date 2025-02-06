@@ -1,0 +1,27 @@
+[
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -DRAM -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg\" -DF2837xD=1",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device/F2837xD_CodeStartBranch.asm"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -DRAM -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg\" -DF2837xD=1",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device/device.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -DRAM -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg\" -DF2837xD=1",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/lab_main.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -DRAM -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg\" -DF2837xD=1",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg/board.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00\" -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib/\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DDEBUG -DCPU1 -DRAM -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg\" -DF2837xD=1",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/lab_lp_f2837xd/CPU1_RAM/syscfg/c2000ware_libraries.c"
+   }
+]

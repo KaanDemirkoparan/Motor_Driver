@@ -1,0 +1,17 @@
+[
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led\" -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/device/F2837xD_CodeStartBranch.asm"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led\" -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/device/device.c"
+   },
+   {
+      "directory" : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM",
+      "command"   : "clang++ -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led\" -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/device\" -I\"C:/ti/c2000/C2000Ware_5_04_00_00/driverlib/f2837xd/driverlib\" -I\"C:/ti/ccs2001/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include\" -DCPU1 -D_LAUNCHXL_F28379D -I\"C:/Users/kaan.demirkoparan/my_workspace/2837_led/CPU1_RAM/syscfg\"",
+      "file"      : "C:/Users/kaan.demirkoparan/my_workspace/2837_led/led_ex1_blinky.c"
+   }
+]
