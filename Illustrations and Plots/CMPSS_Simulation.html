@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2000 CMPSS Hardware Simulator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 800px;
+        }
+        canvas {
+            background-color: #000000;
+            border: 1px solid #444;
+            border-radius: 5px;
+            transition: background-color 0.1s;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #aaa;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+        }
+        .fault-active {
+            background-color: #4a0000 !important;
+            border-left-color: #f44336 !important;
+        }
+        .value-display {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>CMPSS Overcurrent Simulation</h2>
+    <p style="color: #aaa; font-size: 14px;">Simulating a 12-bit ADC tracking a noisy motor phase current. Midpoint is 2048.</p>
+    
+    <canvas id="scope" width="760" height="300"></canvas>
+    
+    <div class="stats" id="statusBox">
+        <strong>System Status: </strong> <span id="statusText" style="color: #4CAF50;">RUNNING NORMAL</span><br>
+        <strong>Total Hardware Faults: </strong> <span id="tripCounter" class="value-display" style="color: #f44336;">0</span>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Motor Current Amplitude: <span id="ampVal" class="value-display">1000</span></label>
+            <input type="range" id="amplitude" min="0" max="2000" value="1000">
+        </div>
+        <div class="control-group">
+            <label>High Limit (dacValH): <span id="highVal" class="value-display">3500</span></label>
+            <input type="range" id="dacHigh" min="2048" max="4095" value="3500">
+        </div>
+        <div class="control-group">
+            <label>MOSFET Switching Noise: <span id="noiseVal" class="value-display">150</span></label>
+            <input type="range" id="noise" min="0" max="1000" value="150">
+        </div>
+        <div class="control-group">
+            <label>Digital Filter (Clock Cycles): <span id="filterVal" class="value-display">5</span></label>
+            <input type="range" id="filter" min="1" max="50" value="5">
+        </div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('scope');
+    const ctx = canvas.getContext('2d');
+    const statusBox = document.getElementById('statusBox');
+    const statusText = document.getElementById('statusText');
+    const tripCounterDisplay = document.getElementById('tripCounter');
+
+    // State variables
+    let dataPoints = new Array(canvas.width).fill(2048);
+    let time = 0;
+    let overcurrentDuration = 0;
+    let totalTrips = 0;
+    let isFaulted = false;
+    let faultTimer = 0;
+
+    // Center point for 12-bit ADC
+    const ADC_MIDPOINT = 2048;
+
+    function draw() {
+        // Read Sliders
+        const amplitude = parseInt(document.getElementById('amplitude').value);
+        const dacValH = parseInt(document.getElementById('dacHigh').value);
+        const noiseLevel = parseInt(document.getElementById('noise').value);
+        const filterCycles = parseInt(document.getElementById('filter').value);
+
+        // Update Labels
+        document.getElementById('ampVal').innerText = amplitude;
+        document.getElementById('highVal').innerText = dacValH;
+        document.getElementById('noiseVal').innerText = noiseLevel;
+        document.getElementById('filterVal').innerText = filterCycles;
+
+        // Calculate mirroring dacValL based on dacValH distance from 2048
+        const windowSize = dacValH - ADC_MIDPOINT;
+        const dacValL = ADC_MIDPOINT - windowSize;
+
+        if (!isFaulted) {
+            // Generate next data point (Sine wave + random high-frequency spikes)
+            let current = ADC_MIDPOINT + amplitude * Math.sin(time * 0.05);
+            
+            // Inject sharp switching noise (simulating PWM edges)
+            if (Math.random() > 0.85) {
+                current += (Math.random() * noiseLevel * 2) - noiseLevel;
+            }
+
+            // Shift array and add new point
+            dataPoints.shift();
+            dataPoints.push(current);
+            time++;
+
+            // CMPSS Logic Check
+            if (current > dacValH || current < dacValL) {
+                overcurrentDuration++; // Current is outside limits!
+            } else {
+                overcurrentDuration = 0; // Reset if it drops back into safe zone
+            }
+
+            // Digital Filter Check
+            if (overcurrentDuration >= filterCycles) {
+                triggerFault();
+            }
+        } else {
+            // Fault state behavior
+            faultTimer++;
+            if (faultTimer > 100) { // Keep fault active for ~1.5 seconds (100 frames)
+                recoverFault();
+            }
+        }
+
+        // --- RENDER VISUALS --- //
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Map 0-4095 ADC values to canvas height (0-300px)
+        const mapY = (val) => canvas.height - (val / 4095) * canvas.height;
+
+        // Draw Zero Current Line (2048)
+        ctx.strokeStyle = '#333';
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(0, mapY(ADC_MIDPOINT));
+        ctx.lineTo(canvas.width, mapY(ADC_MIDPOINT));
+        ctx.stroke();
+
+        // Draw DAC Limits
+        ctx.strokeStyle = '#f44336';
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(0, mapY(dacValH));
+        ctx.lineTo(canvas.width, mapY(dacValH));
+        ctx.moveTo(0, mapY(dacValL));
+        ctx.lineTo(canvas.width, mapY(dacValL));
+        ctx.stroke();
+
+        // Draw Current Signal
+        ctx.strokeStyle = '#4CAF50';
+        if (isFaulted) ctx.strokeStyle = '#ff9800'; // Turn orange during fault
+        ctx.setLineDash([]);
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let i = 0; i < dataPoints.length; i++) {
+            const x = i;
+            const y = mapY(dataPoints[i]);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.lineWidth = 1;
+
+        requestAnimationFrame(draw);
+    }
+
+    function triggerFault() {
+        isFaulted = true;
+        faultTimer = 0;
+        totalTrips++;
+        tripCounterDisplay.innerText = totalTrips;
+        
+        // UI Updates
+        canvas.style.backgroundColor = '#3a0000';
+        statusBox.className = 'stats fault-active';
+        statusText.innerText = 'HARDWARE TRIP! (ePWM Shut Down)';
+        statusText.style.color = '#ff9800';
+    }
+
+    function recoverFault() {
+        isFaulted = false;
+        overcurrentDuration = 0;
+        
+        // UI Updates
+        canvas.style.backgroundColor = '#000000';
+        statusBox.className = 'stats';
+        statusText.innerText = 'RUNNING NORMAL';
+        statusText.style.color = '#4CAF50';
+    }
+
+    // Start simulation
+    draw();
+</script>
+
+</body>
+</html>
