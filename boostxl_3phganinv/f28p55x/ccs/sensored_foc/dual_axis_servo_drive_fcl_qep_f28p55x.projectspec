@@ -1,0 +1,167 @@
+<projectSpec>
+  <project
+        name="dual_axis_servo_drive_fcl_qep_f28p55x"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.1.LTS"
+        outputFormat="ELF"		
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+
+    <configuration
+        name="F28P55x_RAM"
+        compilerBuildOptions="-v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --idiv_support=idiv0 --tmu_support=tmu1 --vcu_support=vcrc -O4 --opt_for_speed=5 --fp_mode=relaxed 
+			-I${PROJECT_ROOT}/
+            -I${PROJECT_ROOT}/libraries/sfra/include/ 
+            -I${PROJECT_ROOT}/libraries/utilities/datalog/include/              
+            -I${PROJECT_ROOT}/libraries/position_sensing/qep/include/
+            -I${PROJECT_ROOT}/libraries/observers/speed_observer/include/
+            -I${PROJECT_ROOT}/libraries/utilities/math_blocks/CLA_v1.0/
+            -I${PROJECT_ROOT}/libraries/utilities/math_blocks/v4.3/
+            -I${PROJECT_ROOT}/libraries/dacs/dac128s085/include/	   
+			-I${PROJECT_ROOT}/libraries/control/dcl/c28/include/
+            -I${PROJECT_ROOT}/libraries/math/IQmath/c28/include/            
+            -I${PROJECT_ROOT}/libraries/fcl/include/
+            -I${PROJECT_ROOT}/src_device/
+            -I${PROJECT_ROOT}/src_device/device_support/headers/include/
+            -I${PROJECT_ROOT}/src_device/device_support/commons/include/
+            -I${PROJECT_ROOT}/src_device/driverlib/
+            -I${PROJECT_ROOT}/src_device/driverlib/inc/
+            -I${PROJECT_ROOT}/headers/                    
+			--define=_DEBUG --define=LARGE_MODEL 
+			--define=DAC128S_ENABLE --define=DAC128S_SPIA
+			--define=F28P55x_DEVICE  --define=CPU1
+            --define=_LAUNCHXL_F28P55X --define=_BOOSTXL_3PHGANINV --define=LPVER_RELEASE --define=LPVER_TEST039_N
+			--define=_DUAL_HEADERS --define=TEST_ENABLE --define=SFRA_ENABLE
+			-g --diag_warning=225 --diag_suppress=10063
+			--quiet -k --asm_listing 
+			--gen_func_subsections=on --abi=eabi"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x380 
+			-I${PROJECT_ROOT}/libraries/math/IQmath/c28/lib
+            -I${PROJECT_ROOT}/libraries/math/FPUfastRTS/c28/lib            
+			-I${PROJECT_ROOT}/libraries/dsp/VCU/c28/lib
+			--define=CLA_C
+			--reread_libs 
+            -llibc.a"
+        />
+    <configuration
+        name="F28P55x_FLASH"
+        compilerBuildOptions="-v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --idiv_support=idiv0 --tmu_support=tmu1 --vcu_support=vcrc -O4 --opt_for_speed=5 --fp_mode=relaxed 
+			-I${PROJECT_ROOT}/
+            -I${PROJECT_ROOT}/libraries/sfra/include/ 
+            -I${PROJECT_ROOT}/libraries/utilities/datalog/include/              
+            -I${PROJECT_ROOT}/libraries/position_sensing/qep/include/
+            -I${PROJECT_ROOT}/libraries/observers/speed_observer/include/
+            -I${PROJECT_ROOT}/libraries/utilities/math_blocks/CLA_v1.0
+            -I${PROJECT_ROOT}/libraries/utilities/math_blocks/v4.3/
+            -I${PROJECT_ROOT}/libraries/dacs/dac128s085/include/	   
+			-I${PROJECT_ROOT}/libraries/control/dcl/c28/include/
+            -I${PROJECT_ROOT}/libraries/math/IQmath/c28/include/
+            -I${PROJECT_ROOT}/libraries/fcl/include/
+            -I${PROJECT_ROOT}/src_device/
+            -I${PROJECT_ROOT}/src_device/device_support/headers/include/
+            -I${PROJECT_ROOT}/src_device/device_support/commons/include/
+            -I${PROJECT_ROOT}/src_device/driverlib/
+            -I${PROJECT_ROOT}/src_device/driverlib/inc/
+            -I${PROJECT_ROOT}/headers/            
+			--define=_DEBUG --define=_FLASH --define=LARGE_MODEL 
+			--define=F28P55x_DEVICE  --define=CPU1
+            --define=LAUNCHXL_F28P55X --define=BOOSTXL_3PHGANINV --define=LPVER_RELEASE --define=LPVER_TEST039_N 
+			--define=_DUAL_HEADERS --define=TEST_ENABLE --define=SFRA_ENABLE
+			-g --diag_warning=225 --diag_suppress=10063
+			--quiet -k --asm_listing 
+			--gen_func_subsections=on --abi=eabi"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x380 
+			-I${PROJECT_ROOT}/libraries/math/IQmath/c28/lib
+            -I${PROJECT_ROOT}/libraries/math/FPUfastRTS/c28/lib            
+			-I${PROJECT_ROOT}/libraries/dsp/VCU/c28/lib
+			--define=CLA_C
+			--reread_libs 
+            -llibc.a"
+        />
+
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../c2000ware/device_support/f28p55x" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../c2000ware/driverlib/f28p55x/driverlib" scope="project" />
+    <pathVariable name="C2000WARE_LIB_ROOT" path="../../../../../c2000ware/libraries" scope="project" />
+    <pathVariable name="SFRA_INSTALL_ROOT" path="../../../../../libraries/sfra" scope="project" />
+    <pathVariable name="SDK_ROOT"  path="../../../../.." scope="project" />
+    <pathVariable name="PROJ_ROOT" path="../../.."       scope="project" />	
+	
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/debug/dual_axis_servo_drive_vars.txt"         targetDirectory="" />
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/debug/dual_axis_servo_drive_graph1.graphProp" targetDirectory="" />
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/debug/dual_axis_servo_drive_graph2.graphProp" targetDirectory="" />
+	
+    <file action="copy" path="SDK_ROOT/solutions/boostxl_3phganinv/f28p55x/cmd/dual_axis_f28p55x_flash_lnk.cmd"  targetDirectory="src_device" applicableConfigurations="F28P55x_FLASH" />
+    <file action="copy" path="SDK_ROOT/solutions/boostxl_3phganinv/f28p55x/cmd/dual_axis_f28p55x_ram_lnk.cmd"    targetDirectory="src_device" applicableConfigurations="F28P55x_RAM" />
+    <file action="copy" path="SDK_ROOT/solutions/boostxl_3phganinv/f28p55x/cmd/f28p55x_headers_nonbios_eabi.cmd" targetDirectory="src_device" />
+
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/device.c"                              targetDirectory="src_device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/headers/source/f28p55x_globalvariabledefs.c"         targetDirectory="src_device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f28p55x_codestartbranch.asm"           targetDirectory="src_device" />	
+	<file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include"                                      targetDirectory="src_device/device_support/commons/" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/headers/include"                                     targetDirectory="src_device/device_support/headers/" />
+
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F28P550SJ9.ccxml"         targetDirectory="" />
+
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/CLA_v1.0/RAMP_GEN_CLA.h" targetDirectory="libraries/utilities/math_blocks/CLA_v1.0/" />
+
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/clarke.h"           targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/park.h"             targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/ipark.h"            targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/pi.h"               targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/svgen.h"            targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/rampgen.h"          targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/rmp_cntl.h"         targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/volt_calc.h"        targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/speed_fr.h"         targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/resolver.h"         targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/pid_grando.h"       targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/math_blocks/include/v4.3/pid_reg3.h"         targetDirectory="libraries/utilities/math_blocks/v4.3/" />
+
+    <file action="copy" path="SDK_ROOT/libraries/utilities/datalog/source/dlog_4ch_f.c"           targetDirectory="libraries/utilities/datalog/source/" />
+    <file action="copy" path="SDK_ROOT/libraries/utilities/datalog/include/dlog_4ch_f.h"          targetDirectory="libraries/utilities/datalog/include/" />
+    
+    <file action="copy" path="SDK_ROOT/libraries/position_sensing/qep/include/qep_defs.h"         targetDirectory="libraries/position_sensing/qep/include/" /> 
+    <file action="copy" path="SDK_ROOT/libraries/observers/speed_observer/include"                targetDirectory="libraries/observers/speed_observer/include/" />
+
+    <file action="copy" path="SDK_ROOT/libraries/dacs/dac128s085/include/dac128s085.h"            targetDirectory="libraries/dacs/dac128s085/include" /> 
+    <file action="copy" path="SDK_ROOT/libraries/dacs/dac128s085/source/dac128s085.c"             targetDirectory="libraries/dacs/dac128s085/source" excludeFromBuild="True" /> 
+
+    <file action="copy" path="C2000WARE_LIB_ROOT/control/DCL/c28/include/DCL.h"            targetDirectory="libraries/control/DCL/c28/include/" />
+    <file action="copy" path="C2000WARE_LIB_ROOT/control/DCL/c28/include/DCLF32.h"         targetDirectory="libraries/control/DCL/c28/include/" />
+    <file action="copy" path="C2000WARE_LIB_ROOT/control/DCL/c28/source/DCL_NLPID_C3.asm"  targetDirectory="libraries/control/DCL/c28/source/"  excludeFromBuild="True" />
+
+    <file action="copy" path="C2000WARE_LIB_ROOT/math/IQmath/c28/include/IQmathLib.h"      targetDirectory="libraries/math/IQmath/c28/include/" />
+
+    <file action="copy" path="SFRA_INSTALL_ROOT/include/sfra_f32.h"                        targetDirectory="libraries/sfra/include/" />
+    <file action="copy" path="SFRA_INSTALL_ROOT/gui/include/sfra_gui_scicomms_driverlib.h" targetDirectory="libraries/sfra/include/" />
+    <file action="copy" path="SFRA_INSTALL_ROOT/gui/source/sfra_gui_scicomms_driverlib.c"  targetDirectory="libraries/sfra/source" />
+    <file action="copy" path="SFRA_INSTALL_ROOT/lib/sfra_f32_tmu_eabi.lib"                 targetDirectory="libraries/sfra/lib" />    
+
+    <file action="copy" path="C2000WARE_DLIB_ROOT/ccs/Release/driverlib.lib"      targetDirectory="src_device" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT"                                targetDirectory="src_device" excludeFromBuild="True"/>	
+
+    <file action="copy" path="SDK_ROOT/libraries/fcl/source/fcl_cla_code_dm.cla"  targetDirectory="libraries/fcl/source" />
+    <file action="copy" path="SDK_ROOT/libraries/fcl/source/fcl_cpu_code_dm.c"    targetDirectory="libraries/fcl/source" />
+
+    <file action="copy" path="SDK_ROOT/libraries/fcl/include/fcl_cla_dm.h"        targetDirectory="libraries/fcl/include" />
+    <file action="copy" path="SDK_ROOT/libraries/fcl/include/cpu_cla_shared_dm.h" targetDirectory="libraries/fcl/include" />
+    <file action="copy" path="SDK_ROOT/libraries/fcl/include/fcl_cpu_cla_dm.h"    targetDirectory="libraries/fcl/include" />
+    <file action="copy" path="SDK_ROOT/libraries/fcl/include/fcl_pi.h"            targetDirectory="libraries/fcl/include" />
+    <file action="copy" path="SDK_ROOT/libraries/fcl/include/f28x_bmsk.h"         targetDirectory="libraries/fcl/include" />
+	
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/source/sfra_gui.c"                          targetDirectory="sources" />
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/source/dual_axis_servo_drive.c"             targetDirectory="sources" />
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/source/dual_axis_servo_drive_cla_tasks.cla" targetDirectory="sources" />
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/source/dual_axis_servo_drive_user.c"        targetDirectory="sources" />	
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/include/dual_axis_servo_drive.h"            targetDirectory="headers" />	
+    <file action="copy" path="SDK_ROOT/solutions/common/sensored_foc/include/fcl_enum.h"                         targetDirectory="headers" />
+
+    <file action="copy" path="PROJ_ROOT/f28p55x/source/dual_axis_servo_drive_hal.c"                              targetDirectory="sources" />
+    <file action="copy" path="PROJ_ROOT/f28p55x/include/dual_axis_servo_drive_hal.h"                             targetDirectory="headers" />
+    <file action="copy" path="PROJ_ROOT/f28p55x/include/dual_axis_servo_drive_settings.h"                        targetDirectory="headers" />
+    <file action="copy" path="PROJ_ROOT/f28p55x/include/dual_axis_servo_drive_user.h"                            targetDirectory="headers" />
+    <file action="copy" path="PROJ_ROOT/f28p55x/include/sfra_settings.h"                                         targetDirectory="headers" />
+
+  </project>
+</projectSpec>
