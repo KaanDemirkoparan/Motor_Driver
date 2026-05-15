@@ -1,0 +1,72 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28002x" --package "80QFP" --part "F28002x_80QFP" --product "C2000MCSDK@1.00.00.00"
+ * @versions {"tool":"1.15.0+2786"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const asysctl                  = scripting.addModule("/driverlib/asysctl.js");
+const universal_motor_control  = scripting.addModule("/solutions/universal_motor_control.js", {}, false);
+const universal_motor_control1 = universal_motor_control.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+asysctl.analogReference         = "INTERNAL";
+asysctl.enableTemperatureSensor = true;
+asysctl.analogReferenceVoltage  = "1P65";
+
+universal_motor_control1.$name                                   = "myUMC0";
+universal_motor_control1.motor1_epwm_U.epwm.$assign              = "EPWM1";
+universal_motor_control1.motor1_epwm_U.epwm.epwm_aPin.$assign    = "ball.63";
+universal_motor_control1.motor1_epwm_U.epwm.epwm_bPin.$assign    = "ball.62";
+universal_motor_control1.motor1_epwm_V.epwm.$assign              = "EPWM2";
+universal_motor_control1.motor1_epwm_V.epwm.epwm_aPin.$assign    = "ball.61";
+universal_motor_control1.motor1_epwm_V.epwm.epwm_bPin.$assign    = "ball.60";
+universal_motor_control1.motor1_epwm_W.epwm.$assign              = "EPWM3";
+universal_motor_control1.motor1_epwm_W.epwm.epwm_aPin.$assign    = "ball.59";
+universal_motor_control1.motor1_epwm_W.epwm.epwm_bPin.$assign    = "ball.78";
+universal_motor_control1.motor1_gate_en_gpio.direction           = "GPIO_DIR_MODE_OUT";
+universal_motor_control1.motor1_gate_en_gpio.gpioPin.$assign     = "ball.3";
+universal_motor_control1.motor1_gate_mode_gpio.direction         = "GPIO_DIR_MODE_OUT";
+universal_motor_control1.motor1_gate_mode_gpio.writeInitialValue = true;
+universal_motor_control1.motor1_gate_mode_gpio.gpioPin.$assign   = "ball.57";
+universal_motor_control1.motor1_gate_gain_gpio.gpioPin.$assign   = "ball.58";
+universal_motor_control1.motor1_gate_cal_gpio.gpioPin.$assign    = "ball.44";
+universal_motor_control1.motor1_pm_nfault_gpio.gpioPin.$assign   = "ball.77";
+universal_motor_control1.adc_ADCC.registerInterrupts             = ["1"];
+universal_motor_control1.adc_ADCC.useInterrupts                  = false;
+
+const analog                                 = scripting.addModule("/driverlib/analog.js", {}, false);
+const analog1                                = analog.addInstance({}, false);
+analog1.$name                                = "myANALOGPinMux0";
+universal_motor_control1.cmpss_CMPSS1.analog = analog1;
+universal_motor_control1.cmpss_CMPSS3.analog = analog1;
+universal_motor_control1.adc_ADCA.analog     = analog1;
+universal_motor_control1.adc_ADCC.analog     = analog1;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+analog1.analog.$suggestSolution                  = "ANALOG";
+analog1.analog["a0/c15Pin"].$suggestSolution     = "ball.19";
+analog1.analog.a1Pin.$suggestSolution            = "ball.18";
+analog1.analog["a10/c10Pin"].$suggestSolution    = "ball.29";
+analog1.analog["a11/c0Pin"].$suggestSolution     = "ball.16";
+analog1.analog["a12/c1Pin"].$suggestSolution     = "ball.22";
+analog1.analog["a14/c4Pin"].$suggestSolution     = "ball.15";
+analog1.analog["a15/c7Pin"].$suggestSolution     = "ball.14";
+analog1.analog["a2/c9Pin"].$suggestSolution      = "ball.13";
+analog1.analog["a3/c5/vdacPin"].$suggestSolution = "ball.12";
+analog1.analog["a4/c14Pin"].$suggestSolution     = "ball.27";
+analog1.analog["a5/c2Pin"].$suggestSolution      = "ball.17";
+analog1.analog.a6Pin.$suggestSolution            = "ball.10";
+analog1.analog["a7/c3Pin"].$suggestSolution      = "ball.23";
+analog1.analog["a8/c11Pin"].$suggestSolution     = "ball.24";
+analog1.analog["a9/c8Pin"].$suggestSolution      = "ball.28";
+analog1.analog.c6Pin.$suggestSolution            = "ball.11";

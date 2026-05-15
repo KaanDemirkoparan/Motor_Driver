@@ -1,0 +1,37 @@
+<projectSpec>
+  <project
+        name="universal_motorcontrol_syscfg_f28002x"
+        device="TMS320F280025C"
+        cgtVersion="22.6.0.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        enableSysConfigTool="true"
+        linkerCommandFile=""
+        sourceLookupPath="${C2000WARE_DLIB_ROOT}" 
+        sysConfigBuildOptions="--product ${MCSDK_ROOT}/.metadata/sdk.json --device F28002x --package 80QFP --part F28002x_80QFP"
+        >
+    <configuration name="CPU1_FLASH" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --idiv_support=idiv0 --tmu_support=tmu1 -O2 --opt_for_speed=3 --fp_mode=relaxed -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${MCSDK_ROOT} -I${MCSDK_UMCL_COMMON} -v28 -ml -mt --define=DEBUG --define=_FLASH --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --define=_FULL_FAST_LIB --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100 -i${C2000WARE_ROOT} -i${MCSDK_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lmcsdk_libraries.cmd.genlibs " />
+
+    <pathVariable name="MCSDK_ROOT" path="../../../.." scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="${MCSDK_ROOT}/c2000ware/driverlib/f28002x/driverlib" scope="project" />    
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="${MCSDK_ROOT}/c2000ware/device_support/f28002x" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="${MCSDK_ROOT}/c2000ware/" scope="project" />  
+    <pathVariable name="MCSDK_UMCL_COMMON" path="${MCSDK_ROOT}/solutions/universal_motorcontrol_syscfg/common/include" scope="project" />   
+    <pathVariable name="CLB_SYSCFG_ROOT" path="${MCSDK_ROOT}/c2000ware/utilities/clb_tool/clb_syscfg/" scope="project" />
+    <pathVariable name="SYSTEMC_INSTALL" path="${MCSDK_ROOT}/c2000ware/utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />
+    <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
+       
+
+    <file action="link" path="${MCSDK_ROOT}/solutions/universal_motorcontrol_syscfg/f28002x/cmd/f28002x_flash_lib_is_eabi.cmd" targetDirectory="" />
+    
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/source/f28002x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/targetConfigs/TMS320F280025C_LaunchPad.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="${C2000WARE_DEVICE_SUPPORT_ROOT}/common/targetConfigs/TMS320F280025C.ccxml" targetDirectory="targetConfigs" />
+    <file action="link" path="${C2000WARE_DLIB_ROOT}/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="${C2000WARE_DLIB_ROOT}/" targetDirectory="device" excludeFromBuild="True"/>    
+    <file action="copy" path="../c2000.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>
