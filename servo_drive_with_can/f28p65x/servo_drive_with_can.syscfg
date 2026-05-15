@@ -1,0 +1,42 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.20.0+3587"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const analog  = scripting.addModule("/driverlib/analog.js", {}, false);
+const analog1 = analog.addInstance();
+const dac     = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1    = dac.addInstance();
+const dac2    = dac.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
+dac1.$name            = "myDAC0";
+dac1.enableOutput     = true;
+
+dac2.$name            = "myDAC1";
+dac2.dacBase          = "DACC_BASE";
+dac2.enableOutput     = true;
+dac2.referenceVoltage = "DAC_REF_ADC_VREFHI";
+
+analog1.$name            = "myANALOGPinMux0";
+dac1.analog              = analog1;
+dac2.analog              = analog1;
+analog1.useCase          = "CUSTOM";
+analog1.useInterfacePins = ["A0/DACA_OUT","B1/DACC_OUT"];
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+analog1.analog.$suggestSolution                   = "ANALOG";
+analog1.analog["a0/daca_outPin"].$suggestSolution = "A0/DACA_OUT";
+analog1.analog["b1/dacc_outPin"].$suggestSolution = "B1/DACC_OUT";
